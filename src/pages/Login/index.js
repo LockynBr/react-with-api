@@ -16,13 +16,7 @@ export default function Login() {
 
   return (
     <Container>
-      <Title isGray={false}>
-        Login <small>Olá</small>
-      </Title>
-      <Paragraph>Lorem Ipsum is simply dummy text.</Paragraph>
-      <button type="button" onClick={handleClick}>
-        Enviar
-      </button>
+      <h1>Login</h1>
     </Container>
   );
 }
