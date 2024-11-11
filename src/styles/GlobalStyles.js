@@ -27,6 +27,11 @@ export default createGlobalStyle`
     color: #fff;
     padding: 10px 20px;
     border-radius: 4px;
+    transition: all 300ms;
+  }
+
+  button:hover {
+    filter: brightness(75%);
   }
 
   a {
@@ -39,25 +44,16 @@ export default createGlobalStyle`
   }
 
   body .Toastify .Toastify__toast-container .Toastify__toast--success  {
-    background: ${colors.sucessColor};
-    color: #fff;
     border-radius: 8px;
     padding: 16px;
     font-size: 1rem;
   }
 
   body .Toastify .Toastify__toast-container .Toastify__toast--error {
-  background: ${colors.errorColor};
-  color: #fff;
   border-radius: 8px;
   padding: 16px;
   font-size: 1rem;
   }
-
-  body .Toastify__close-button {
-    color: #fff;
-  }
-
 `;
 
 export const Container = styled.section`
