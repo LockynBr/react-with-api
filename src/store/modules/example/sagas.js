@@ -14,7 +14,7 @@ function* exampleRequest() {
   try {
     // Se der certo ele dispara o sucesso
     yield call(request);
-    yield put(actions.buttonClickedSucess());
+    yield put(actions.buttonClickedSuccess());
   } catch (e) {
     // Se der erro chama a action de erro
     toast.error('Deu erro!', {

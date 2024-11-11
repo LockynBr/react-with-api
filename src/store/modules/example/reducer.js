@@ -6,7 +6,7 @@ const initState = {
 
 export default function (state = initState, action) {
   switch (action.type) {
-    case types.BOTAO_CLICADO_SUCESS: {
+    case types.BOTAO_CLICADO_SUCCESS: {
       console.log('Requisição feita com sucesso!');
       const newState = { ...state };
       newState.botaoClicado = !newState.botaoClicado;

@@ -4,9 +4,9 @@ import { persistReducer } from 'redux-persist';
 export default (reducers) => {
   const persistedReducers = persistReducer(
     {
-      key: 'REACT-BASE',
+      key: 'REACT-WITH-API',
       storage,
-      whitelist: ['example'], // Só os modulos que queremos que salve; essa chave está no rootReducer.
+      whitelist: ['auth'], // Só os modulos que queremos que salve; essa chave está no rootReducer.
     },
     reducers
   );

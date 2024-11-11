@@ -6,9 +6,9 @@ export function buttonClickedRequest() {
   };
 }
 
-export function buttonClickedSucess() {
+export function buttonClickedSuccess() {
   return {
-    type: types.BOTAO_CLICADO_SUCESS,
+    type: types.BOTAO_CLICADO_SUCCESS,
   };
 }
 
