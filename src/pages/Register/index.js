@@ -7,11 +7,13 @@ import { Container } from '../../styles/GlobalStyles';
 import { Form } from './styled';
 import axios from '../../services/axios';
 import history from '../../services/history';
+import Loading from '../../components/Loading';
 
 export default function Register() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -34,6 +36,8 @@ export default function Register() {
 
     if (formErros) return;
 
+    setIsLoading(true);
+
     try {
       await axios.post('/users/', {
         nome,
@@ -41,16 +45,19 @@ export default function Register() {
         email,
       });
       toast.success('Registration completed successfully!');
+      setIsLoading(false);
       history.push('/login');
     } catch (e) {
       const errors = get(e, 'response.data.errors', []);
 
       errors.map((error) => toast.error(error));
+      setIsLoading(false);
     }
   }
 
   return (
     <Container>
+      <Loading isLoading={isLoading} />
       <h1>Create your account</h1>
 
       <Form onSubmit={handleSubmit}>
@@ -61,7 +68,6 @@ export default function Register() {
             value={nome}
             onChange={(e) => {
               setNome(e.target.value);
-              console.log('Nome:', e.target.value); // Verifica o valor do nome no console
             }}
             placeholder="Your nome"
           />
