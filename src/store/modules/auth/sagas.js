@@ -29,8 +29,48 @@ function persistRehydrate({ payload }) {
   axios.defaults.headers.Authorization = `Bearer ${token}`;
 }
 
-function registerRequest({ payload }) {
+// eslint-disable-next-line consistent-return
+function* registerRequest({ payload }) {
   const { id, nome, email, password } = payload;
+
+  try {
+    if (id) {
+      yield call(axios.put, '/users', {
+        email,
+        nome,
+        password: password || undefined,
+      });
+      toast.success('Data changed successfully!');
+      yield put(actions.registerUpdatedSuccess({ nome, email, password }));
+      history.push('/login');
+    } else {
+      yield call(axios.post, '/users', {
+        email,
+        nome,
+        password,
+      });
+      toast.success('Account created successfully!');
+      yield put(actions.registerCreatedSuccess({ nome, email, password }));
+      history.push('/login');
+    }
+  } catch (e) {
+    const errors = get(e, 'response.data.errors', []);
+    const status = get(e, 'response.status', 0);
+
+    if (status === 401) {
+      toast.info('You need to log in again');
+      yield put(actions.loginFailure());
+      return history.push('/login');
+    }
+
+    if (errors.length > 0) {
+      errors.map((error) => toast.error(error));
+    } else {
+      toast.error('Unknown error');
+    }
+
+    yield put(actions.registerFailure());
+  }
 }
 
 export default all([
