@@ -64,7 +64,7 @@ export default function Register() {
             onChange={(e) => {
               setNome(e.target.value);
             }}
-            placeholder="Your nome"
+            placeholder="Your name"
           />
         </label>
 

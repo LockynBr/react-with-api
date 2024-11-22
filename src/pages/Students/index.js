@@ -8,12 +8,12 @@ import {
   FaExclamation,
 } from 'react-icons/fa';
 
+import { toast } from 'react-toastify';
 import { Container } from '../../styles/GlobalStyles';
-import { StudentContainer, ProfilePicture } from './styled';
+import { StudentContainer, ProfilePicture, NewStudent } from './styled';
 import axios from '../../services/axios';
 
 import Loading from '../../components/Loading';
-import { toast } from 'react-toastify';
 
 export default function Students() {
   const [alunos, setAlunos] = useState([]);
@@ -61,7 +61,11 @@ export default function Students() {
   return (
     <Container>
       <Loading isLoading={isLoading} />
+
       <h1>Students</h1>
+
+      <NewStudent to="/student/"> New student </NewStudent>
+
       <StudentContainer>
         {alunos.map((aluno, index) => (
           <div key={String(aluno.id)}>
